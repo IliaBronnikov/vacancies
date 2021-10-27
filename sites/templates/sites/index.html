@@ -14,7 +14,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Джуманджи</title>
+  <title>Работа мечты</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -47,13 +47,14 @@
     <section class="mt-5 pt-3">
       <h2 class="h2 font-weight-normal text-center mb-5">Вакансии по рубрикам</h2>
       <div class="row mb-0">
-        {% for k,v in specialities.items %}
+        {% for spec in specialities %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-4 text-center mb-4">
-            <img class="mx-auto d-block" src={% static 'sites/'|add:v.logo %} width="80" height="80" alt="">
+            <img class="mx-auto d-block" src="{{ spec.logo.url }}" width="80" height="80" alt="">
             <div class="card-body">
-              <p class="card-text mb-2">{{ v.title }}</p>
-              <p class="card-text"><a href={{ v.code }}>{{ v.count }} вакансий</a></p>
+              <p class="card-text mb-2">{{ spec.title }}</p>
+              <p class="card-text"><a href={% url 'vacancies_spec_view' speciality_code=spec.code %}>{{ spec.count }}
+                вакансий</a></p>
             </div>
           </div>
         </div>
@@ -64,14 +65,15 @@
     <section class="my-5 pt-3">
       <h2 class="h2 font-weight-normal text-center mb-5">Нам доверяют лучшие компании</h2>
       <div class="row mb-0">
-        {% for k,v in company.items %}
+        {% for company in companies %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-4 text-center mb-4">
-            <a href="{{ v.id }}" style="max-width: 150px;" class="mx-auto d-block">
-              <img class="mx-auto d-block mw-100" src={% static 'sites/'|add:v.logo %} alt="">
+            <a style="max-width: 150px;" class="mx-auto d-block">
+              <img class="mx-auto d-block mw-100" src={{ company.logo.url }} alt="">
             </a>
             <div class="card-body">
-              <p class="card-text"><a href="{{ v.id }}">{{ v.count }} вакансий</a></p>
+              <p class="card-text"><a href={% url 'vacancies_comp_view' id_comp=company.id %}>{{ company.count }}
+                вакансий</a></p>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ class SpecialtyFactory(factory.Factory):
     class Meta:
         model = Specialty
 
+
 class VacancyFactory(factory.Factory):
     class Meta:
         model = Vacancy
