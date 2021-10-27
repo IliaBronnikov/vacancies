@@ -18,3 +18,5 @@ pip install -r requirements.txt
 ./manage.py runserver
 ```
 - открыть в браузере http://localhost:8000 
+
+![alt text](Screenshots/Main_page.png "Главная страница сайта")
