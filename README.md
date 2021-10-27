@@ -19,4 +19,4 @@ pip install -r requirements.txt
 ```
 - открыть в браузере http://localhost:8000 
 
-![alt text](Screenshots/Main_page.png "Главная страница сайта")
+![alt text](https://github.com/IliaBronnikov/Vacancies-site/Screenshots/Main_page.png?raw=true)
