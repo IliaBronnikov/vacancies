@@ -26,9 +26,9 @@ from sites.views import (
 )
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", MainView.as_view()),
-    path("vacancies", AllVacanciesView.as_view()),
+    path("admin/", admin.site.urls, name="admin"),
+    path("", MainView.as_view(), name="index"),
+    path("vacancies", AllVacanciesView.as_view(), name="vacancies"),
     path(
         "vacancies/cat/<str:speciality_code>",
         VacanciesSpecView.as_view(),
@@ -37,7 +37,7 @@ urlpatterns = [
     path(
         "companies/<int:id_comp>", CompanyCardView.as_view(), name="vacancies_comp_view"
     ),
-    path("vacancies/<int:id_vac>", VacancyDetailView.as_view()),
+    path("vacancies/<int:id_vac>", VacancyDetailView.as_view(), name="vacancy"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

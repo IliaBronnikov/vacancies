@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from django.views import View
-from sites.services import *
-from sites.models import Vacancy
+
+from sites.models import Vacancy, Specialty
+from sites.services import (
+    build_specialities_context,
+    build_companies_context,
+    get_field_of_company_model,
+)
 
 
 class MainView(View):
@@ -10,7 +15,7 @@ class MainView(View):
         companies_context = build_companies_context()
         return render(
             request,
-            "index.html",
+            "sites/index.html",
             context={
                 **specialities_context,
                 **companies_context,
@@ -24,7 +29,7 @@ class AllVacanciesView(View):
         all_vacancies = Vacancy.objects.all()
         return render(
             request,
-            "full_lst_vacancies.html",
+            "sites/full_lst_vacancies.html",
             context={"quantity": number_of_vacations, "data": all_vacancies},
         )
 
@@ -40,7 +45,7 @@ class VacanciesSpecView(View):
         )
         return render(
             request,
-            "vacancies_for_speciality.html",
+            "sites/vacancies_for_speciality.html",
             context={
                 "speciality": speciality,
                 "quantity": number_of_vacations_by_speciality,
@@ -59,7 +64,7 @@ class CompanyCardView(View):
         all_vacancies_by_company = Vacancy.objects.filter(company__id=id_comp)
         return render(
             request,
-            "company.html",
+            "sites/company.html",
             context={
                 "quantity": number_of_vacations_by_company,
                 "data": all_vacancies_by_company,
@@ -72,7 +77,7 @@ class CompanyCardView(View):
 class VacancyDetailView(View):
     def get(self, request, id_vac, *args, **kwargs):
         vacancy_data = Vacancy.objects.get(id=id_vac)
-        return render(request, "vacancy.html", context={"vacancy": vacancy_data})
+        return render(request, "sites/vacancy.html", context={"vacancy": vacancy_data})
 
 
 class ApplicationView(View):

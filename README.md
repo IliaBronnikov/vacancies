@@ -12,11 +12,12 @@ source venv/bin/activate
 - установить зависимости
 ```shell script
 pip install -r requirements.txt
+pip install -r requirements_dev.txt
 ```
-- запустить тестовый django-проект
+- запустить
 ```shell script
 ./manage.py runserver
 ```
 - открыть в браузере http://localhost:8000 
 
-![alt text](Screenshots/Main_page.PNG?raw=true)
+![alt text](screenshots/Main_page.PNG?raw=true)
